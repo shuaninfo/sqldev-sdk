@@ -72,7 +72,7 @@ func (s *Sqldev) sendRequest(method, path string, payload map[string]string) ([]
 		request.Header.Set(`Content-Type`, `application/x-www-form-urlencoded`)
 		request.Body = ioutil.NopCloser(strings.NewReader(params.Encode()))
 	} else {
-		return nil, errors.New(`Unsupported method`)
+		return nil, errors.New(`unsupported method`)
 	}
 
 	response, err := s.Client.Do(request)
