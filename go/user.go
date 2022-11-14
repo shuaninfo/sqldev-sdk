@@ -10,21 +10,20 @@ import (
 
 // UserDto 用户信息Dto
 type UserDto struct {
-	Id         int64     `json:"id"`
-	CreatedAt  time.Time `json:"created_at"`
-	UpdateAt   time.Time `json:"updated_at"`
-	Role       int       `json:"role"`
-	Name       string    `json:"name"`
-	UserName   string    `json:"user_name"`
-	State      int64     `json:"state"`
-	Sex        int       `json:"sex"`
-	Email      string    `json:"email"`
-	LastIp     string    `json:"last_ip"`
-	LastTime   time.Time `json:"last_time"`
-	Telno      string    `json:"telno"`
-	Expire     int64     `json:"expire"`
-	GroupName  string    `json:"group_name"`
-	GroupPname string    `json:"group_pname"`
+	Id        int64     `json:"id"`
+	CreatedAt time.Time `json:"created_at"`
+	UpdateAt  time.Time `json:"updated_at"`
+	Role      int       `json:"role"`
+	Name      string    `json:"name"`
+	UserName  string    `json:"user_name"`
+	State     int64     `json:"state"`
+	Sex       int       `json:"sex"`
+	Email     string    `json:"email"`
+	LastIp    string    `json:"last_ip"`
+	LastTime  time.Time `json:"last_time"`
+	Telno     string    `json:"telno"`
+	Expire    int64     `json:"expire"`
+	GroupName string    `json:"group_name"`
 }
 
 // GetUserInfo 获取用户信息

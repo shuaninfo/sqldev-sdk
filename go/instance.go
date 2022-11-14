@@ -78,7 +78,7 @@ type InstanceDto struct {
 	//分页查询方式 1 包装limit    2 游标
 	PageQuery int `json:"page_query"`
 
-	//使用状态 1 正常 2停用
+	//使用状态 1 正常 0停用
 	State int `json:"state"`
 
 	ConState int `json:"con_state"` //连接状态，3 连接失败 2 已连接  1 连接中 0 未连接

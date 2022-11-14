@@ -8,7 +8,7 @@ import (
 
 type SqlQueryDto struct {
 	Data  interface{} `json:"data"`
-	Count int64       `json:"count"`
+	Total int64       `json:"total"`
 }
 
 func (s *Sqldev) Query(form *SqlQueryForm) (interface{}, error) {
