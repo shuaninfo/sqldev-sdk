@@ -1,13 +1,5 @@
 import sqldev
 
-# 为Sqldev类编写python版本的测试
-# 常量从下面这段go代码拿
-# const (
-# 	ENDPOINT   = `http://127.0.0.1:8080/openapi/v1`
-# 	APP_KEY    = `a9967fcfa669c40c5df7db31a33f70d4`
-# 	APP_SECRET = `5414aabf-db54-4f45-b7e1-1d99aa10e47c`
-# )
-
 s = sqldev.Sqldev('http://127.0.0.1:8080/openapi/v1', 'a9967fcfa669c40c5df7db31a33f70d4',
                   '5414aabf-db54-4f45-b7e1-1d99aa10e47c')
 
