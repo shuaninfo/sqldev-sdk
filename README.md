@@ -3,7 +3,7 @@
 
 本文介绍了SQLDEV接口的调用方式及接口文档的相关格式说明。
 
-具体接口说明请见仓库内doc目录或[showdoc](https://www.showdoc.com.cn/sqldev)
+具体接口说明请见仓库内doc目录或[接口文档](https://www.showdoc.com.cn/sqldev)
 
 请求协议
 ----
