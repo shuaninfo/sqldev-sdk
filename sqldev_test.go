@@ -215,3 +215,25 @@ func TestStateInstance(t *testing.T) {
 		return
 	}
 }
+
+func TestQuery(t *testing.T) {
+	a, err := sqldev.Query(&SqlQueryForm{
+		Project: 1,
+		Iid:     "03af2e960d8736f7724484c263b257f4",
+		Sql: `
+select 
+	t.id, t.sample 
+from 
+	test_table_1 t `,
+		Owner:     "testdb",
+		Schema:    "",
+		PageIndex: 0,
+		PageSize:  100,
+		NeedTotal: false,
+	})
+	if err != nil {
+		fmt.Printf("%v\n", err)
+		return
+	}
+	fmt.Printf("%+v\n", a)
+}
