@@ -7,6 +7,7 @@ import (
 	"testing"
 )
 
+// 如需测试，请将下面的常量替换为自己的
 const (
 	ENDPOINT   = `http://127.0.0.1:8080/openapi/v1`
 	APP_KEY    = `a9967fcfa669c40c5df7db31a33f70d4`
