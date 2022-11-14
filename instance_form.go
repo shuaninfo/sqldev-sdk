@@ -17,8 +17,6 @@ type InstancePageForm struct {
 
 // InstanceAddForm 添加实例参数
 type InstanceAddForm struct {
-	ID string `json:"id"`
-
 	Name string `json:"name"`
 
 	User string `json:"user"`
@@ -50,8 +48,6 @@ type InstanceAddForm struct {
 	PageQuery int `json:"page_query"`
 
 	Config string ` json:"config"`
-
-	State int ` json:"state"`
 
 	PoolMin int `json:"pool_min"`
 

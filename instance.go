@@ -90,8 +90,8 @@ type InstanceDto struct {
 	ErrMsg string `json:"err_msg"`
 }
 
-// GetInstance 获取数据源信息
-func (s *Sqldev) GetInstance(id string) (*InstanceDto, error) {
+// GetInstanceInfo 获取数据源信息
+func (s *Sqldev) GetInstanceInfo(id string) (*InstanceDto, error) {
 	params := map[string]string{
 		"id": id,
 	}

@@ -15,6 +15,30 @@ const (
 
 var sqldev = NewSqldev(ENDPOINT, APP_KEY, APP_SECRET, &http.Client{})
 
+func TestGetUserInfo(t *testing.T) {
+	a, err := sqldev.GetUserInfo(17)
+	if err != nil {
+		fmt.Printf("%v\n", err)
+		return
+	}
+	fmt.Printf("%+v\n", a)
+}
+
+func TestGetUserPage(t *testing.T) {
+	a, total, err := sqldev.GetUserPage(&UserPageForm{
+		PageNo:   0,
+		PageSize: 100,
+	})
+	if err != nil {
+		fmt.Printf("%v\n", err)
+		return
+	}
+	for i := range a {
+		fmt.Printf("%+v\n", a[i])
+	}
+	fmt.Printf("%+v\n", total)
+}
+
 func TestAddUser(t *testing.T) {
 	a, err := sqldev.AddUser(&UserAddForm{
 		Name:      "账号必填11122222233",
@@ -74,32 +98,8 @@ func TestUpdateUserState(t *testing.T) {
 	}
 }
 
-func TestGetUserInfo(t *testing.T) {
-	a, err := sqldev.GetUserInfo(17)
-	if err != nil {
-		fmt.Printf("%v\n", err)
-		return
-	}
-	fmt.Printf("%+v\n", a)
-}
-
-func TestGetUserPage(t *testing.T) {
-	a, total, err := sqldev.GetUserPage(&UserPageForm{
-		PageNo:   0,
-		PageSize: 100,
-	})
-	if err != nil {
-		fmt.Printf("%v\n", err)
-		return
-	}
-	for i := range a {
-		fmt.Printf("%+v\n", a[i])
-	}
-	fmt.Printf("%+v\n", total)
-}
-
-func TestGetInstance(t *testing.T) {
-	a, err := sqldev.GetInstance("3ab520c26bbd77f4b24db89aaaed71ec")
+func TestGetInstanceInfo(t *testing.T) {
+	a, err := sqldev.GetInstanceInfo("3ab520c26bbd77f4b24db89aaaed71ec")
 	if err != nil {
 		fmt.Printf("%v\n", err)
 		return
@@ -124,8 +124,92 @@ func TestGetInstancePage(t *testing.T) {
 	fmt.Printf("%+v\n", total)
 }
 
+func TestAddInstance(t *testing.T) {
+	a, err := sqldev.AddInstance(&InstanceAddForm{
+		Name:        "测试数据源名称1",
+		User:        "ceshi",
+		Pass:        "ceshimima",
+		Ip:          "127.0.0.1",
+		Port:        "6666",
+		Db:          "testdb",
+		ConType:     "base",
+		ServiceType: "",
+		UserType:    "",
+		OperType:    4,
+		DbType:      "mysql",
+		AsynExport:  0,
+		AsynQuery:   0,
+		AsynSql:     0,
+		PageQuery:   0,
+		Config:      "",
+		PoolMin:     1,
+		PoolMax:     5,
+		MaxRow:      100000,
+		SshUse:      false,
+		SshServer:   "",
+		SshPort:     "",
+		SshUser:     "",
+		SshPassword: "",
+		SshAuth:     0,
+		TxTimeout:   30,
+	})
+	if err != nil {
+		fmt.Printf("%v\n", err)
+		return
+	}
+	fmt.Printf("%+v\n", a)
+}
+
+func TestUpdInstance(t *testing.T) {
+	a, err := sqldev.UpdateInstance(&InstanceUpdForm{
+		ID:          "f7e55dc7c669f79983565bcb42bd092c",
+		Name:        "测试数据源名称2",
+		User:        "ceshi",
+		Pass:        "ceshimima",
+		Ip:          "127.0.0.1",
+		Port:        "6666",
+		Db:          "testdb2",
+		ConType:     "base",
+		ServiceType: "",
+		UserType:    "",
+		OperType:    4,
+		DbType:      "mysql",
+		AsynExport:  0,
+		AsynQuery:   0,
+		AsynSql:     0,
+		PageQuery:   0,
+		Config:      "",
+		PoolMin:     1,
+		PoolMax:     5,
+		MaxRow:      100000,
+		SshUse:      false,
+		SshServer:   "",
+		SshPort:     "",
+		SshUser:     "",
+		SshPassword: "",
+		SshAuth:     0,
+		TxTimeout:   30,
+	})
+	if err != nil {
+		fmt.Printf("%v\n", err)
+		return
+	}
+	fmt.Printf("%+v\n", a)
+}
+
 func TestRemoveInstance(t *testing.T) {
 	err := sqldev.RemoveInstance("5787240261629d40b4941ec4c85724e6")
+	if err != nil {
+		fmt.Printf("%v\n", err)
+		return
+	}
+}
+
+func TestStateInstance(t *testing.T) {
+	err := sqldev.StateInstance(&InstanceStateForm{
+		ID:    "0587584ba4ee9ede2bf8f3eccab8ec53",
+		State: 0,
+	})
 	if err != nil {
 		fmt.Printf("%v\n", err)
 		return
