@@ -14,16 +14,16 @@
 
 ##### 参数
 
-| 参数名        | 必填  | 类型     | 说明       |
-|:-----------|:----|:-------|----------|
-| project    | 是   | int    | 项目id     |
-| iid        | 是   | string | 数据源id    |
-| sql        | 是   | string | 待执行sql   |
-| owner      | 是   | string | 数据库名称    |
-| schema     | 否   | string | Schema名称 |
-| page_index | 是   | int    | 页码       |
-| page_size  | 是   | int    | 每页数量     |
-| need_total | 否   | bool   | 是否返回总数   |
+| 参数名        | 必填  | 类型     | 说明         |
+|:-----------|:----|:-------|------------|
+| project    | 是   | int    | 项目id       |
+| iid        | 是   | string | 数据源id      |
+| sql        | 是   | string | sql        |
+| owner      | 是   | string | Database名称 |
+| schema     | 否   | string | Schema名称   |
+| page_index | 是   | int    | 页码(从0开始)   |
+| page_size  | 是   | int    | 每页数量       |
+| need_total | 否   | bool   | 是否返回总数     |
 
 ##### 返回示例
 

@@ -34,7 +34,6 @@ type UserAddForm struct {
 // UserUpdForm 更新用户信息参数
 type UserUpdForm struct {
 	Id        int64  `json:"id"`
-	Name      string `json:"name"`
 	GroupName string `json:"group_name"`
 
 	State    int64  `json:"state"`

@@ -2,7 +2,6 @@ package info.sqldev.user;
 
 public class UserUpdForm {
     private int id;
-    private String name;
     private String groupName;
     private int state;
     private long expire;
@@ -20,14 +19,6 @@ public class UserUpdForm {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getGroupName() {

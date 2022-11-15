@@ -62,7 +62,6 @@ func TestAddUser(t *testing.T) {
 func TestUpdUser(t *testing.T) {
 	err := sqldev.UpdUser(&UserUpdForm{
 		Id:        17,
-		Name:      "用户名222",
 		GroupName: "自动创建！",
 		State:     0,
 		Expire:    -1,
@@ -199,7 +198,7 @@ func TestUpdInstance(t *testing.T) {
 }
 
 func TestRemoveInstance(t *testing.T) {
-	err := sqldev.RemoveInstance("5787240261629d40b4941ec4c85724e6")
+	err := sqldev.RemoveInstance("3e1e5f8f59fa052dfd340aef932b164e")
 	if err != nil {
 		fmt.Printf("%v\n", err)
 		return
