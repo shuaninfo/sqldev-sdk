@@ -7,7 +7,7 @@ public class UserPageForm {
     private String userName;
     private int state;
     private int role;
-    private String groupId;
+    private String groupName;
     private String email;
     private String telno;
     private String source;
@@ -62,12 +62,12 @@ public class UserPageForm {
         this.role = role;
     }
 
-    public String getGroupId() {
-        return groupId;
+    public String getGroupName() {
+        return groupName;
     }
 
-    public void setGroupId(String groupId) {
-        this.groupId = groupId;
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
 
     public String getEmail() {

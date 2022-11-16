@@ -2,13 +2,13 @@ package sqldev
 
 // UserPageForm 用户列表查询参数
 type UserPageForm struct {
-	PageNo   int    `json:"page_no"`
-	PageSize int    `json:"page_size"`
-	Name     string `json:"name"`
-	UserName string `json:"user_name"`
-	State    int64  `json:"state"`
-	Role     int    `json:"role"`
-	GroupId  string `json:"group_id"`
+	PageNo    int    `json:"page_no"`
+	PageSize  int    `json:"page_size"`
+	Name      string `json:"name"`
+	UserName  string `json:"user_name"`
+	State     int64  `json:"state"`
+	Role      int    `json:"role"`
+	GroupName string `json:"group_name"`
 
 	Email   string `json:"email"`
 	Telno   string `json:"telno"`

@@ -27,8 +27,9 @@ func TestGetUserInfo(t *testing.T) {
 
 func TestGetUserPage(t *testing.T) {
 	a, total, err := sqldev.GetUserPage(&UserPageForm{
-		PageNo:   0,
-		PageSize: 100,
+		PageNo:    0,
+		PageSize:  100,
+		GroupName: "测试部门",
 	})
 	if err != nil {
 		fmt.Printf("%v\n", err)
