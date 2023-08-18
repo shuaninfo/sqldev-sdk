@@ -9,6 +9,10 @@ import (
 type SqlQueryDto struct {
 	Data  interface{} `json:"data"`
 	Total int64       `json:"total"`
+	Msg   string      `json:"msg"`
+	Ok    bool        `json:"ok"`
+	Sql   string      `json:"sql"`
+	No    int         `json:"no"`
 }
 
 func (s *Sqldev) Query(form *SqlQueryForm) (interface{}, error) {
@@ -23,9 +27,9 @@ func (s *Sqldev) Query(form *SqlQueryForm) (interface{}, error) {
 	}
 
 	result := &struct {
-		Result int          `json:"result"`
-		Msg    string       `json:"msg"`
-		Data   *SqlQueryDto `json:"data"`
+		Result int            `json:"result"`
+		Msg    string         `json:"msg"`
+		Data   *[]SqlQueryDto `json:"data"`
 	}{}
 
 	err = json.Unmarshal(res, result)
