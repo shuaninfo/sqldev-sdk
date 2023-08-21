@@ -15,7 +15,7 @@ type SqlQueryDto struct {
 	No    int         `json:"no"`
 }
 
-func (s *Sqldev) Query(form *SqlQueryForm) (interface{}, error) {
+func (s *Sqldev) Query(form *SqlQueryForm) (*[]SqlQueryDto, error) {
 	params, err := utils.ObjectToMap(form)
 	if err != nil {
 		return nil, err

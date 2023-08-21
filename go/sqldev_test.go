@@ -225,20 +225,29 @@ func TestQuery(t *testing.T) {
 select 
 	t.id, t.sample 
 from 
-	test_table_1 t ;
+	test_table_1 t where t.id =1;
 
 update test_table_1 t set t.sample = '777' where t.id = 1;
 
 select 
 	t.id, t.sample 
 from 
-	test_table_1 t ;`,
+	test_table_1 t where t.id=1;`,
 		Owner:     "testdb",
 		Schema:    "",
 		PageIndex: 0,
 		PageSize:  100,
 		NeedTotal: true,
 	})
+	if err != nil {
+		fmt.Printf("%v\n", err)
+		return
+	}
+	fmt.Printf("%+v\n", a)
+}
+
+func TestGetWorkInfo(t *testing.T) {
+	a, err := sqldev.GetWorkInfo("16915775542572")
 	if err != nil {
 		fmt.Printf("%v\n", err)
 		return
