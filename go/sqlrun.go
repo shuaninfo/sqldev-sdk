@@ -3,7 +3,6 @@ package sqldev
 import (
 	"encoding/json"
 	"errors"
-	"sqldev/utils"
 )
 
 type SqlQueryDto struct {
@@ -16,7 +15,7 @@ type SqlQueryDto struct {
 }
 
 func (s *Sqldev) Query(form *SqlQueryForm) (*[]SqlQueryDto, error) {
-	params, err := utils.ObjectToMap(form)
+	params, err := ObjectToMap(form)
 	if err != nil {
 		return nil, err
 	}

@@ -5,7 +5,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
-	"sqldev/sign"
 	"strconv"
 	"strings"
 	"time"
@@ -53,7 +52,7 @@ func (s *Sqldev) sendRequest(method, path string, payload map[string]string) ([]
 	params.Set(`app_key`, s.AppKey)
 	params.Set(`current_time`, strconv.FormatInt(time.Now().UnixMilli(), 10))
 
-	sign, err := sign.GetSignature(params, s.AppSecret)
+	sign, err := GetSignature(params, s.AppSecret)
 	if err != nil {
 		return nil, err
 	}

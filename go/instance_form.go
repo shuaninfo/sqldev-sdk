@@ -64,6 +64,12 @@ type InstanceAddForm struct {
 
 	//手动事务超时时间，单位秒，默认30秒
 	TxTimeout int64 `json:"tx_timeout"`
+
+	//独享链接超时时间，单位秒，默认300秒
+	ExTimeout int64 `json:"ex_timeout"`
+
+	//连接获取超时时间，单位秒，默认3秒
+	ConnTimeout int64 `json:"conn_timeout"`
 }
 
 // InstanceUpdForm 更新实例参数
@@ -131,6 +137,12 @@ type InstanceUpdForm struct {
 
 	//手动事务超时时间，单位秒，默认30秒
 	TxTimeout int64 `json:"tx_timeout"`
+
+	//独享链接超时时间，单位秒，默认300秒
+	ExTimeout int64 `json:"ex_timeout"`
+
+	//连接获取超时时间，单位秒，默认3秒
+	ConnTimeout int64 `json:"conn_timeout"`
 }
 
 // InstanceStateForm 启用/禁用实例参数

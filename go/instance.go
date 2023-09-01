@@ -3,7 +3,6 @@ package sqldev
 import (
 	"encoding/json"
 	"errors"
-	"sqldev/utils"
 	"time"
 )
 
@@ -64,6 +63,12 @@ type InstanceDto struct {
 	//手动事务超时时间，单位秒，默认30秒
 	TxTimeout int64 `json:"tx_timeout"`
 
+	//独享链接超时时间，单位秒，默认300秒
+	ExTimeout int64 `json:"ex_timeout"`
+
+	//连接获取超时时间，单位秒，默认3秒
+	ConnTimeout int64 `json:"conn_timeout"`
+
 	//是否支持异步查询
 	AsynQuery int `json:"asyn_query"`
 
@@ -120,7 +125,7 @@ func (s *Sqldev) GetInstanceInfo(id string) (*InstanceDto, error) {
 
 // GetInstancePage 获取数据源信息列表
 func (s *Sqldev) GetInstancePage(form *InstancePageForm) ([]*InstanceDto, int64, error) {
-	params, err := utils.ObjectToMap(form)
+	params, err := ObjectToMap(form)
 	if err != nil {
 		return nil, 0, err
 	}
@@ -154,7 +159,7 @@ func (s *Sqldev) GetInstancePage(form *InstancePageForm) ([]*InstanceDto, int64,
 
 // AddInstance 添加数据源
 func (s *Sqldev) AddInstance(form *InstanceAddForm) (string, error) {
-	params, err := utils.ObjectToMap(form)
+	params, err := ObjectToMap(form)
 	if err != nil {
 		return "", err
 	}
@@ -183,7 +188,7 @@ func (s *Sqldev) AddInstance(form *InstanceAddForm) (string, error) {
 
 // UpdateInstance 更新数据源信息
 func (s *Sqldev) UpdateInstance(form *InstanceUpdForm) (string, error) {
-	params, err := utils.ObjectToMap(form)
+	params, err := ObjectToMap(form)
 	if err != nil {
 		return "", err
 	}
@@ -240,7 +245,7 @@ func (s *Sqldev) RemoveInstance(id string) error {
 
 // StateInstance 启用/禁用数据源
 func (s *Sqldev) StateInstance(form *InstanceStateForm) error {
-	params, err := utils.ObjectToMap(form)
+	params, err := ObjectToMap(form)
 	if err != nil {
 		return err
 	}

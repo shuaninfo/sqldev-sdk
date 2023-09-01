@@ -3,7 +3,6 @@ package sqldev
 import (
 	"encoding/json"
 	"errors"
-	"sqldev/utils"
 	"time"
 )
 
@@ -209,7 +208,7 @@ func (s *Sqldev) GetWorkInfo(id string) (*WorkDto, error) {
 
 // AuditWork 工单审批
 func (s *Sqldev) AuditWork(form *AuditWorkForm) error {
-	params, err := utils.ObjectToMap(form)
+	params, err := ObjectToMap(form)
 	if err != nil {
 		return err
 	}

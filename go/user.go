@@ -3,7 +3,6 @@ package sqldev
 import (
 	"encoding/json"
 	"errors"
-	"sqldev/utils"
 	"strconv"
 	"time"
 )
@@ -57,7 +56,7 @@ func (s *Sqldev) GetUserInfo(id int64) (*UserDto, error) {
 
 // GetUserPage 获取用户列表
 func (s *Sqldev) GetUserPage(form *UserPageForm) ([]*UserDto, int64, error) {
-	params, err := utils.ObjectToMap(form)
+	params, err := ObjectToMap(form)
 	if err != nil {
 		return nil, 0, err
 	}
@@ -92,7 +91,7 @@ func (s *Sqldev) GetUserPage(form *UserPageForm) ([]*UserDto, int64, error) {
 
 // AddUser 添加用户
 func (s *Sqldev) AddUser(form *UserAddForm) (int64, error) {
-	params, err := utils.ObjectToMap(form)
+	params, err := ObjectToMap(form)
 	if err != nil {
 		return 0, err
 	}
@@ -121,7 +120,7 @@ func (s *Sqldev) AddUser(form *UserAddForm) (int64, error) {
 
 // UpdUser 更新用户信息
 func (s *Sqldev) UpdUser(form *UserUpdForm) error {
-	params, err := utils.ObjectToMap(form)
+	params, err := ObjectToMap(form)
 	if err != nil {
 		return err
 	}
@@ -178,7 +177,7 @@ func (s *Sqldev) RemoveUser(id int64) error {
 
 // StateUser 启用/禁用用户
 func (s *Sqldev) StateUser(form *UserStateForm) error {
-	params, err := utils.ObjectToMap(form)
+	params, err := ObjectToMap(form)
 	if err != nil {
 		return err
 	}

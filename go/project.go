@@ -3,7 +3,6 @@ package sqldev
 import (
 	"encoding/json"
 	"errors"
-	"sqldev/utils"
 )
 
 // ProjectDto 项目信息Dto
@@ -49,7 +48,7 @@ func (s *Sqldev) GetProjectInfo(id string) (*ProjectDto, error) {
 
 // GetProjectPage 获取项目信息列表
 func (s *Sqldev) GetProjectPage(form *ProjectPageForm) ([]*ProjectDto, int64, error) {
-	params, err := utils.ObjectToMap(form)
+	params, err := ObjectToMap(form)
 	if err != nil {
 		return nil, 0, err
 	}
@@ -83,7 +82,7 @@ func (s *Sqldev) GetProjectPage(form *ProjectPageForm) ([]*ProjectDto, int64, er
 
 // AddProject 添加项目
 func (s *Sqldev) AddProject(form *ProjectAddForm) (string, error) {
-	params, err := utils.ObjectToMap(form)
+	params, err := ObjectToMap(form)
 	if err != nil {
 		return "", err
 	}
@@ -112,7 +111,7 @@ func (s *Sqldev) AddProject(form *ProjectAddForm) (string, error) {
 
 // UpdateProject 更新项目信息
 func (s *Sqldev) UpdateProject(form *ProjectUpdForm) (string, error) {
-	params, err := utils.ObjectToMap(form)
+	params, err := ObjectToMap(form)
 	if err != nil {
 		return "", err
 	}
@@ -169,7 +168,7 @@ func (s *Sqldev) RemoveProject(id string) error {
 
 // StateProject 启用/禁用项目
 func (s *Sqldev) StateProject(form *ProjectStateForm) error {
-	params, err := utils.ObjectToMap(form)
+	params, err := ObjectToMap(form)
 	if err != nil {
 		return err
 	}
