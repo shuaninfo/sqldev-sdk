@@ -266,3 +266,28 @@ func (s *Sqldev) StateInstance(form *InstanceStateForm) error {
 	}
 	return nil
 }
+
+// GetInstanceSync 同步数据源
+func (s *Sqldev) GetInstanceSync() ([]*InstanceDto, error) {
+
+	res, err := s.sendRequest("GET", "/instance/sync", nil)
+	if err != nil {
+		return nil, err
+	}
+
+	result := &struct {
+		Result int            `json:"result"`
+		Msg    string         `json:"msg"`
+		Data   []*InstanceDto `json:"data"`
+	}{}
+
+	err = json.Unmarshal(res, result)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.Result != 1 {
+		return nil, errors.New(result.Msg)
+	}
+	return result.Data, nil
+}

@@ -217,6 +217,17 @@ func TestStateInstance(t *testing.T) {
 	}
 }
 
+func TestGetInstanceSync(t *testing.T) {
+	a, err := sqldev.GetInstanceSync()
+	if err != nil {
+		fmt.Printf("%v\n", err)
+		return
+	}
+	for i := range a {
+		fmt.Printf("%+v\n", a[i])
+	}
+}
+
 func TestQuery(t *testing.T) {
 	a, err := sqldev.Query(&SqlQueryForm{
 		Project: 1,
