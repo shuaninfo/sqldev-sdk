@@ -3,6 +3,7 @@ package sqldev
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"time"
 )
 
@@ -93,6 +94,13 @@ type InstanceDto struct {
 
 	//连接错误的错误信息
 	ErrMsg string `json:"err_msg"`
+}
+
+// InstanceWhitelistDto 数据源白名单Dto
+type InstanceWhitelistDto struct {
+	ID   int64  `json:"id"`
+	DbId string `json:"db_id" `
+	Ip   string `json:"ip" `
 }
 
 // GetInstanceInfo 获取数据源信息
@@ -295,4 +303,123 @@ func (s *Sqldev) GetInstanceSync() ([]*InstanceDto, error) {
 		return nil, errors.New(result.Msg)
 	}
 	return result.Data, nil
+}
+
+// AddInstanceWhitelist 添加白名单
+func (s *Sqldev) AddInstanceWhitelist(form *InstanceWhitelistAddForm) (int64, error) {
+	params, err := ObjectToMap(form)
+	if err != nil {
+		return 0, err
+	}
+
+	res, err := s.sendRequest("POST", "/instance/whitelist/add", params)
+	if err != nil {
+		return 0, err
+	}
+
+	result := &struct {
+		Result int    `json:"result"`
+		Msg    string `json:"msg"`
+		Data   int64  `json:"data"`
+	}{}
+
+	err = json.Unmarshal(res, result)
+	if err != nil {
+		return 0, err
+	}
+
+	if result.Result != 1 {
+		return 0, errors.New(result.Msg)
+	}
+	return result.Data, nil
+}
+
+// UpdateInstanceWhitelist 更新白名单
+func (s *Sqldev) UpdateInstanceWhitelist(form *InstanceWhitelistUpdForm) (int64, error) {
+	params, err := ObjectToMap(form)
+	if err != nil {
+		return 0, err
+	}
+
+	res, err := s.sendRequest("POST", "/instance/whitelist/upd", params)
+	if err != nil {
+		return 0, err
+	}
+
+	result := &struct {
+		Result int    `json:"result"`
+		Msg    string `json:"msg"`
+		Data   int64  `json:"data"`
+	}{}
+
+	err = json.Unmarshal(res, result)
+	if err != nil {
+		return 0, err
+	}
+
+	if result.Result != 1 {
+		return 0, errors.New(result.Msg)
+	}
+	return result.Data, nil
+}
+
+// GetInstanceWhitelistList 获取白名单列表
+func (s *Sqldev) GetInstanceWhitelistList(dbId string) ([]*InstanceWhitelistDto, error) {
+	params := map[string]string{
+		"db_id": dbId,
+	}
+
+	res, err := s.sendRequest("POST", "/instance/whitelist", params)
+	if err != nil {
+		return nil, err
+	}
+
+	result := &struct {
+		Result int    `json:"result"`
+		Msg    string `json:"msg"`
+		Data   struct {
+			Count    int64                   `json:"count"`
+			PageNo   int64                   `json:"page_no"`
+			PageSize int64                   `json:"page_size"`
+			List     []*InstanceWhitelistDto `json:"list"`
+		} `json:"data"`
+	}{}
+
+	err = json.Unmarshal(res, result)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.Result != 1 {
+		return nil, errors.New(result.Msg)
+	}
+	return result.Data.List, nil
+}
+
+// RemoveInstanceWhitelist 删除白名单
+func (s *Sqldev) RemoveInstanceWhitelist(id int64) error {
+	params := map[string]string{
+		"id": fmt.Sprintf("%d", id),
+	}
+
+	res, err := s.sendRequest("POST", "/instance/whitelist/remove", params)
+	if err != nil {
+		return err
+	}
+
+	result := &struct {
+		Result int    `json:"result"`
+		Msg    string `json:"msg"`
+		Data   string `json:"data"`
+	}{}
+
+	err = json.Unmarshal(res, result)
+	if err != nil {
+		return err
+	}
+
+	if result.Result != 1 {
+		return errors.New(result.Msg)
+	}
+	return nil
 }

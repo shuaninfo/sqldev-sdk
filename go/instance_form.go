@@ -150,3 +150,15 @@ type InstanceStateForm struct {
 	ID    string `json:"id"`
 	State int    `json:"state"`
 }
+
+// InstanceWhitelistAddForm 添加实例白名单
+type InstanceWhitelistAddForm struct {
+	DbId string `json:"db_id"`
+	Ip   string `json:"ip"`
+}
+
+// InstanceWhitelistUpdForm 更新实例白名单
+type InstanceWhitelistUpdForm struct {
+	Id int64  `json:"id"`
+	Ip string `json:"ip"`
+}
