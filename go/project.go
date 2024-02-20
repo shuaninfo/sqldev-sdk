@@ -7,7 +7,7 @@ import (
 
 // ProjectDto 项目信息Dto
 type ProjectDto struct {
-	ID string `json:"id"`
+	ID int64 `json:"id"`
 
 	Name string `json:"name" `
 
@@ -193,4 +193,70 @@ func (s *Sqldev) StateProject(form *ProjectStateForm) error {
 		return errors.New(result.Msg)
 	}
 	return nil
+}
+
+// GetProjectUserList 获取项目成员列表
+func (s *Sqldev) GetProjectUserList(id string) ([]*UserDto, int64, error) {
+	params := map[string]string{
+		"id": id,
+	}
+
+	res, err := s.sendRequest("POST", "/project/user/list", params)
+	if err != nil {
+		return nil, 0, err
+	}
+
+	result := &struct {
+		Result int    `json:"result"`
+		Msg    string `json:"msg"`
+		Data   struct {
+			Count    int64      `json:"count"`
+			PageNo   int64      `json:"page_no"`
+			PageSize int64      `json:"page_size"`
+			List     []*UserDto `json:"list"`
+		} `json:"data"`
+	}{}
+
+	err = json.Unmarshal(res, result)
+	if err != nil {
+		return nil, 0, err
+	}
+
+	if result.Result != 1 {
+		return nil, 0, errors.New(result.Msg)
+	}
+	return result.Data.List, result.Data.Count, nil
+}
+
+// GetProjectUserList 获取项目数据源列表
+func (s *Sqldev) GetProjectInstanceList(id string) ([]*InstanceDto, int64, error) {
+	params := map[string]string{
+		"id": id,
+	}
+
+	res, err := s.sendRequest("POST", "/project/instance/list", params)
+	if err != nil {
+		return nil, 0, err
+	}
+
+	result := &struct {
+		Result int    `json:"result"`
+		Msg    string `json:"msg"`
+		Data   struct {
+			Count    int64          `json:"count"`
+			PageNo   int64          `json:"page_no"`
+			PageSize int64          `json:"page_size"`
+			List     []*InstanceDto `json:"list"`
+		} `json:"data"`
+	}{}
+
+	err = json.Unmarshal(res, result)
+	if err != nil {
+		return nil, 0, err
+	}
+
+	if result.Result != 1 {
+		return nil, 0, errors.New(result.Msg)
+	}
+	return result.Data.List, result.Data.Count, nil
 }

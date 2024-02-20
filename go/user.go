@@ -203,3 +203,31 @@ func (s *Sqldev) StateUser(form *UserStateForm) error {
 	}
 	return nil
 }
+
+// GetProjectUserList 获取用户项目列表
+func (s *Sqldev) GetUserProjectList(name string) ([]*ProjectDto, int64, error) {
+	params := map[string]string{
+		"name": name,
+	}
+
+	res, err := s.sendRequest("POST", "/user/project/list", params)
+	if err != nil {
+		return nil, 0, err
+	}
+
+	result := &struct {
+		Result int           `json:"result"`
+		Msg    string        `json:"msg"`
+		Data   []*ProjectDto `json:"data"`
+	}{}
+
+	err = json.Unmarshal(res, result)
+	if err != nil {
+		return nil, 0, err
+	}
+
+	if result.Result != 1 {
+		return nil, 0, errors.New(result.Msg)
+	}
+	return result.Data, int64(len(result.Data)), nil
+}
