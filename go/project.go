@@ -240,14 +240,9 @@ func (s *Sqldev) GetProjectInstanceList(id string) ([]*InstanceDto, int64, error
 	}
 
 	result := &struct {
-		Result int    `json:"result"`
-		Msg    string `json:"msg"`
-		Data   struct {
-			Count    int64          `json:"count"`
-			PageNo   int64          `json:"page_no"`
-			PageSize int64          `json:"page_size"`
-			List     []*InstanceDto `json:"list"`
-		} `json:"data"`
+		Result int            `json:"result"`
+		Msg    string         `json:"msg"`
+		Data   []*InstanceDto `json:"data"`
 	}{}
 
 	err = json.Unmarshal(res, result)
@@ -258,5 +253,5 @@ func (s *Sqldev) GetProjectInstanceList(id string) ([]*InstanceDto, int64, error
 	if result.Result != 1 {
 		return nil, 0, errors.New(result.Msg)
 	}
-	return result.Data.List, result.Data.Count, nil
+	return result.Data, int64(len(result.Data)), nil
 }
